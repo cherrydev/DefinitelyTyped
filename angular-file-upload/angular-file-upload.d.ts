@@ -5,11 +5,11 @@
 
 /// <reference path="../angularjs/angular.d.ts" />
 
-declare module ng.angularFileUpload  {
+declare module angular.angularFileUpload  {
 
     interface IUploadService {
 
-        http<T>(config: IFileUploadConfig): IUploadPromise<T>;
+        http<T>(config: IRequestConfig): IUploadPromise<T>;
         upload<T>(config: IFileUploadConfig): IUploadPromise<T>;
     }
 
@@ -18,7 +18,7 @@ declare module ng.angularFileUpload  {
         progress(callback: IHttpPromiseCallback<T>): IUploadPromise<T>;
     }
 
-    interface IFileUploadConfig extends ng.IRequestConfig {
+    interface IFileUploadConfig extends IRequestConfig {
 
         file: File;
         fileName?: string;

@@ -334,6 +334,8 @@ declare module Parse {
         static extend(className: string, protoProps?: any, classProps?: any): any;
         static fetchAll<T>(list: Object[], options: ParseDefaultOptions): Promise<T>;
         static fetchAllIfNeeded<T>(list: Object[], options: ParseDefaultOptions): Promise<T>;
+        static destroyAll<T>(list: Object[], options?: ParseDefaultOptions): Promise<T>;
+        static saveAll<T>(list: Object[], options?: ParseDefaultOptions): Promise<T>;
 
         initialize(): void;
         add(attr: string, item: any): Object;
@@ -343,7 +345,6 @@ declare module Parse {
         clear(options: any): any;
         clone(): Object;
         destroy<T>(options?: ParseDefaultOptions): Promise<T>;
-        destroyAll<T>(list: Object[], options?: ParseDefaultOptions): Promise<T>;
         dirty(attr: String): boolean;
         dirtyKeys(): string[];
         escape(attr: string): string;
@@ -361,7 +362,6 @@ declare module Parse {
         relation(attr: string): Relation;
         remove(attr: string, item: any): any;
         save<T>(options?: ParseDefaultOptions, arg2?: any, arg3?: any): Promise<T>;
-        saveAll<T>(list: Object[], options?: ParseDefaultOptions): Promise<T>;
         set(key: string, value: any, options?: ParseDefaultOptions): boolean;
         setACL(acl: ACL, options?: ParseDefaultOptions): boolean;
         unset(attr: string, options?: any): any;
@@ -842,7 +842,6 @@ declare module Parse {
         INVALID_CONTENT_LENGTH =  128,
         FILE_TOO_LARGE =  129,
         FILE_SAVE_ERROR =  130,
-        FILE_DELETE_ERROR =  153,
         DUPLICATE_VALUE =  137,
         INVALID_ROLE_NAME =  139,
         EXCEEDED_QUOTA =  140,
@@ -851,6 +850,9 @@ declare module Parse {
         INVALID_IMAGE_DATA =  150,
         UNSAVED_FILE_ERROR =  151,
         INVALID_PUSH_TIME_ERROR = 152,
+        FILE_DELETE_ERROR = 153,
+        REQUEST_LIMIT_EXCEEDED = 155,
+        INVALID_EVENT_NAME = 160,
         USERNAME_MISSING =  200,
         PASSWORD_MISSING =  201,
         USERNAME_TAKEN =  202,
@@ -860,6 +862,7 @@ declare module Parse {
         SESSION_MISSING =  206,
         MUST_CREATE_USER_THROUGH_SIGNUP =  207,
         ACCOUNT_ALREADY_LINKED =  208,
+        INVALID_SESSION_TOKEN = 209,
         LINKED_ID_MISSING =  250,
         INVALID_LINKED_SESSION =  251,
         UNSUPPORTED_SERVICE =  252,

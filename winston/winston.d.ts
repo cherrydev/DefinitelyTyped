@@ -17,7 +17,7 @@ declare module "winston" {
   export var defaultLogger: LoggerInstance;
 
   export var exitOnError: boolean;
-
+  export var level: string;
 
   export function log(level: string, msg: string, meta: any, callback?: (err: Error, level: string, msg: string, meta: any) => void): LoggerInstance;
   export function log(level: string, msg: string, callback?: (err: Error, level: string, msg: string, meta: any) => void): LoggerInstance;
@@ -44,6 +44,7 @@ declare module "winston" {
   export function remove(transport: TransportInstance): LoggerInstance;
   export function startTimer(): ProfileHandler;
   export function profile(id: string, msg?: string, meta?: any, callback?: (err: Error, level: string, msg: string, meta: any) => void): LoggerInstance;
+  export function addColors(target: any): any;
   export function setLevels(target: any): any;
   export function cli(): LoggerInstance;
 

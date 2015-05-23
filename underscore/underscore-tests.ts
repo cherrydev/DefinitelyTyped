@@ -1,6 +1,6 @@
 /// <reference path="underscore.d.ts" />
 
-declare var $;
+declare var $: any;
 
 _.each([1, 2, 3], (num) => alert(num.toString()));
 _.each({ one: 1, two: 2, three: 3 }, (value, key) => alert(value.toString()));
@@ -11,6 +11,7 @@ _.map({ one: 1, two: 2, three: 3 }, (value, key) => value * 3);
 //var sum = _.reduce([1, 2, 3], (memo, num) => memo + num, 0);	// https://typescript.codeplex.com/workitem/1960
 var sum = _.reduce<number, number>([1, 2, 3], (memo, num) => memo + num, 0);
 sum = _.reduce<number, number>([1, 2, 3], (memo, num) => memo + num); // memo is optional #issue 5 github
+sum = _.reduce<string, number>({'a':'1', 'b':'2', 'c':'3'}, (memo, numstr) => memo + (+numstr));
 
 var list = [[0, 1], [2, 3], [4, 5]];
 //var flat = _.reduceRight(list, (a, b) => a.concat(b), []);	// https://typescript.codeplex.com/workitem/1960
@@ -296,7 +297,7 @@ _.templateSettings = {
 };
 var template2 = _.template("Hello {{ name }}!");
 template2({ name: "Mustache" });
-_.template("Using 'with': <%= data.answer %>", { answer: 'no' }, { variable: 'data' });
+_.template("Using 'with': <%= data.answer %>", { variable: 'data' });
 
 
 _(['test', 'test']).pick(['test2', 'test2']);
@@ -333,3 +334,15 @@ function chain_tests() {
 		.first()
 		.value();
 }
+
+var obj: { [k: string] : number } = {
+       'test' : 5,
+       'another' : 8,
+       'third' : 10
+    },
+    empty = {};
+
+_.chain(obj).map(function (value, key) {
+    empty[key] = value;
+    console.log("vk", value, key);
+});

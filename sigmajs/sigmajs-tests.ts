@@ -1,13 +1,18 @@
 /// <reference path="sigmajs.d.ts"/>
 module SigmaJsTests {
     var container = document.createElement("sigma");
-    var settings = new sigma.classes.configurable({
-        autoResize: true,
-        autoRescale: true
-    })
     var s = new sigma({
-        settings: settings
+        settings: {
+            autoResize: true,
+            autoRescale: true
+        }
     });
+
+    s.settings({
+      maxNodeSize: 10
+    });
+
+    s.settings("maxNodeSize");
 
     s.addRenderer({
         type: 'canvas',
@@ -62,4 +67,11 @@ module SigmaJsTests {
     s.killForceAtlas2();
     s.startForceAtlas2();
     s.stopForceAtlas2();
+
+    s.cameras[0].goTo({
+        angle: 0,
+        x: 100,
+        y: 100,
+        ratio: 1
+    });
 }
